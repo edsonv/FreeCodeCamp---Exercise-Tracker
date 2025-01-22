@@ -3,6 +3,10 @@ const User = require('../models/User');
 
 const getLogsByUserId = async (req, res, next) => {
   const { _id: userId } = req.params;
+  const query = req.query;
+
+  console.log(query);
+
   const { username, _id } = await User.findById(userId);
   const exercises = await Exercise.find({ userId });
   const log = exercises.map(({ description, duration, date }) => {
