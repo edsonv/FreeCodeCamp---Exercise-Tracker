@@ -10,8 +10,6 @@ const addExercise = async (req, res, next) => {
     ? new Date(date).toDateString()
     : new Date().toDateString();
 
-  console.log(parsedDate);
-
   const { username } = await User.findById(userId);
 
   const newExercise = new Exercise({
@@ -22,7 +20,7 @@ const addExercise = async (req, res, next) => {
     date: parsedDate,
   });
 
-  await newExercise.save().then((response) => {
+  await newExercise.save().then(() => {
     res.json({
       username,
       _id: userId,
